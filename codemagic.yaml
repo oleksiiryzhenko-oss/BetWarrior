@@ -1,0 +1,27 @@
+workflows:
+  android-release:
+    name: BetWarrior signed release
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    environment:
+      android_signing:
+        - BetWarrior
+      java: 21
+    scripts:
+      - name: Configure Android SDK
+        script: |
+          set -eu
+          printf 'sdk.dir=%s\n' "$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
+      - name: Check Firebase and signing configuration
+        script: |
+          set -eu
+          test -s app/google-services.json || { echo "Add app/google-services.json for com.starfoodbv.katadojo to the repository"; exit 1; }
+          : "${CM_KEYSTORE_PATH:?Upload the keystore with reference BetWarrior}"
+          : "${CM_KEYSTORE_PASSWORD:?Missing keystore password}"
+          : "${CM_KEY_ALIAS:?Missing key alias}"
+          : "${CM_KEY_PASSWORD:?Missing key password}"
+      - name: Build signed APK and AAB
+        script: bash gradlew :app:assembleRelease :app:bundleRelease --console=plain
+    artifacts:
+      - app/build/outputs/apk/release/*.apk
+      - app/build/outputs/bundle/release/*.aab

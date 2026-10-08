@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "609134808429",
+    "project_id": "bewarrio-club",
+    "storage_bucket": "bewarrio-club.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609134808429:android:944680bf3e929353315e64",
+        "android_client_info": {
+          "package_name": "com.starfoodbv.katadojo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIm2MBv5gMaB10pOcULL3giq2u9MmWzMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
